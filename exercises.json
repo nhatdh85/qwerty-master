@@ -1,0 +1,402 @@
+[
+  {
+    "id": 1,
+    "title": "Làm quen Home Row 1",
+    "description": "Bắt đầu với các phím cơ sở: a, s, d, f.",
+    "level": "Cơ bản",
+    "content": "asdf asdf asdf asdf asdf asdf asdf asdf",
+    "icon": "fa-keyboard"
+  },
+  {
+    "id": 2,
+    "title": "Làm quen Home Row 2",
+    "description": "Luyện tập các phím bên phải: j, k, l, ;.",
+    "level": "Cơ bản",
+    "content": "jkl; jkl; jkl; jkl; jkl; jkl; jkl; jkl;",
+    "icon": "fa-hand-point-right"
+  },
+  {
+    "id": 3,
+    "title": "Kết hợp Home Row",
+    "description": "Kết hợp cả hai bàn tay trên hàng phím cơ sở.",
+    "level": "Cơ bản",
+    "content": "asdf jkl; fj dk sl a; asdf jkl; fj dk sl a;",
+    "icon": "fa-align-justify"
+  },
+  {
+    "id": 4,
+    "title": "Mở rộng phím G và H",
+    "description": "Luyện tập di chuyển ngón trỏ đến phím G và H.",
+    "level": "Cơ bản",
+    "content": "fghj fghj asdfgh jklh fghj asdfgh jklh",
+    "icon": "fa-arrows-alt-h"
+  },
+  {
+    "id": 5,
+    "title": "Từ đơn Home Row",
+    "description": "Gõ các từ có nghĩa từ hàng phím cơ sở.",
+    "level": "Cơ bản",
+    "content": "all fall dad sad glad flask shall salad glass",
+    "icon": "fa-font"
+  },
+  {
+    "id": 6,
+    "title": "Hàng phím trên 1",
+    "description": "Luyện tập các phím: q, w, e, r, t.",
+    "level": "Cơ bản",
+    "content": "qwert qwert qwert qwert qwert qwert qwert",
+    "icon": "fa-arrow-up"
+  },
+  {
+    "id": 7,
+    "title": "Hàng phím trên 2",
+    "description": "Luyện tập các phím: y, u, i, o, p.",
+    "level": "Cơ bản",
+    "content": "yuiop yuiop yuiop yuiop yuiop yuiop yuiop",
+    "icon": "fa-arrow-up"
+  },
+  {
+    "id": 8,
+    "title": "Kết hợp Trên và Cơ sở",
+    "description": "Di chuyển giữa hàng trên và hàng cơ sở.",
+    "level": "Cơ bản",
+    "content": "red fed tag step wear tree real water test rate",
+    "icon": "fa-th-large"
+  },
+  {
+    "id": 9,
+    "title": "Hàng phím dưới 1",
+    "description": "Luyện tập các phím: z, x, c, v, b.",
+    "level": "Cơ bản",
+    "content": "zxcvb zxcvb zxcvb zxcvb zxcvb zxcvb zxcvb",
+    "icon": "fa-arrow-down"
+  },
+  {
+    "id": 10,
+    "title": "Hàng phím dưới 2",
+    "description": "Luyện tập các phím: n, m, ,, ., /.",
+    "level": "Cơ bản",
+    "content": "nm,./ nm,./ nm,./ nm,./ nm,./ nm,./ nm,./",
+    "icon": "fa-arrow-down"
+  },
+  {
+    "id": 11,
+    "title": "Luyện tập phím E và I",
+    "description": "Hai phím phổ biến nhất ở hàng trên.",
+    "level": "Cơ bản",
+    "content": "edie edie edie edie edie edie edie edie",
+    "icon": "fa-bullseye"
+  },
+  {
+    "id": 12,
+    "title": "Luyện tập phím R và U",
+    "description": "Tăng cường sự linh hoạt cho ngón trỏ.",
+    "level": "Cơ bản",
+    "content": "ruur ruur ruur ruur ruur ruur ruur ruur",
+    "icon": "fa-sync"
+  },
+  {
+    "id": 13,
+    "title": "Toàn bộ bảng chữ cái 1",
+    "description": "Luyện tập các từ ngắn chứa nhiều chữ cái khác nhau.",
+    "level": "Cơ bản",
+    "content": "the quick brown fox jumps over the lazy dog",
+    "icon": "fa-alphabet"
+  },
+  {
+    "id": 14,
+    "title": "Cặp phím Shift trái",
+    "description": "Luyện gõ chữ hoa với phím Shift bên trái.",
+    "level": "Cơ bản",
+    "content": "John Kevin Linda Mike Oscar Papa Quebec Romeo",
+    "icon": "fa-arrow-circle-up"
+  },
+  {
+    "id": 15,
+    "title": "Cặp phím Shift phải",
+    "description": "Luyện gõ chữ hoa với phím Shift bên phải.",
+    "level": "Cơ bản",
+    "content": "Alice Sarah David Frank George Helen Isabel",
+    "icon": "fa-arrow-circle-up"
+  },
+  {
+    "id": 16,
+    "title": "Luyện dấu phẩy và chấm",
+    "description": "Ngắt câu cơ bản với dấu , và .",
+    "level": "Cơ bản",
+    "content": "Apple, banana, orange. Red, blue, green.",
+    "icon": "fa-pause"
+  },
+  {
+    "id": 17,
+    "title": "Từ vựng gia đình",
+    "description": "Gõ các từ liên quan đến chủ đề gia đình.",
+    "level": "Cơ bản",
+    "content": "father mother brother sister family parents home",
+    "icon": "fa-users"
+  },
+  {
+    "id": 18,
+    "title": "Chủ đề màu sắc",
+    "description": "Luyện tập với tên các loại màu sắc.",
+    "level": "Cơ bản",
+    "content": "yellow purple orange silver golden white black",
+    "icon": "fa-palette"
+  },
+  {
+    "id": 19,
+    "title": "Số hàng phím số (Trái)",
+    "description": "Làm quen với các phím 1, 2, 3, 4, 5.",
+    "level": "Cơ bản",
+    "content": "12345 12345 12345 12345 12345 12345 12345",
+    "icon": "fa-list-ol"
+  },
+  {
+    "id": 20,
+    "title": "Số hàng phím số (Phải)",
+    "description": "Làm quen với các phím 6, 7, 8, 9, 0.",
+    "level": "Cơ bản",
+    "content": "67890 67890 67890 67890 67890 67890 67890",
+    "icon": "fa-list-ol"
+  },
+  {
+    "id": 21,
+    "title": "Câu chào hỏi thông dụng",
+    "description": "Gõ các câu giao tiếp hàng ngày.",
+    "level": "Trung cấp",
+    "content": "Hello, how are you? I am fine, thank you very much.",
+    "icon": "fa-comments"
+  },
+  {
+    "id": 22,
+    "title": "Thời gian và Ngày tháng",
+    "description": "Luyện tập gõ thứ ngày tháng.",
+    "level": "Trung cấp",
+    "content": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday.",
+    "icon": "fa-calendar-alt"
+  },
+  {
+    "id": 23,
+    "title": "Kỹ năng làm việc nhóm",
+    "description": "Đoạn văn ngắn về tinh thần đồng đội.",
+    "level": "Trung cấp",
+    "content": "Teamwork makes the dream work. Cooperation is the key to success.",
+    "icon": "fa-user-friends"
+  },
+  {
+    "id": 24,
+    "title": "Dấu ngoặc và Phép tính",
+    "description": "Làm quen với ( ) + - * / =",
+    "level": "Trung cấp",
+    "content": "10 + 20 = 30; (5 * 4) / 2 = 10; a + b = c;",
+    "icon": "fa-calculator"
+  },
+  {
+    "id": 25,
+    "title": "Đoạn văn: Công nghệ",
+    "description": "Luyện gõ đoạn văn về chủ đề công nghệ.",
+    "level": "Trung cấp",
+    "content": "Technology is changing the world every day. Artificial intelligence is rising.",
+    "icon": "fa-laptop-code"
+  },
+  {
+    "id": 26,
+    "title": "Dấu nháy và Chấm phẩy",
+    "description": "Sử dụng ' \" và ; : trong câu.",
+    "level": "Trung cấp",
+    "content": "She said: \"It's a beautiful day\"; and I agreed with her.",
+    "icon": "fa-quote-right"
+  },
+  {
+    "id": 27,
+    "title": "Thư điện tử (Email)",
+    "description": "Luyện gõ các cấu trúc trong email.",
+    "level": "Trung cấp",
+    "content": "Dear Sir/Madam, Please find the attached file for your review.",
+    "icon": "fa-envelope"
+  },
+  {
+    "id": 28,
+    "title": "Đoạn văn: Môi trường",
+    "description": "Luyện gõ về chủ đề bảo vệ môi trường.",
+    "level": "Trung cấp",
+    "content": "Protecting the environment is our responsibility. Plant more trees today.",
+    "icon": "fa-leaf"
+  },
+  {
+    "id": 29,
+    "title": "Từ vựng Kinh tế",
+    "description": "Các thuật ngữ kinh tế thường gặp.",
+    "level": "Trung cấp",
+    "content": "Market, Finance, Investment, Profit, Loss, Revenue, Economy.",
+    "icon": "fa-chart-line"
+  },
+  {
+    "id": 30,
+    "title": "Kiểm tra tốc độ 1",
+    "description": "Thử thách gõ nhanh đoạn văn 30 từ.",
+    "level": "Trung cấp",
+    "content": "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+    "icon": "fa-tachometer-alt"
+  },
+  {
+    "id": 31,
+    "title": "Ký tự đặc biệt tầng 1",
+    "description": "Luyện gõ các ký tự: ! @ # $ %",
+    "level": "Trung cấp",
+    "content": "!@#$% !@#$% !@#$% !@#$% !@#$% !@#$%",
+    "icon": "fa-hashtag"
+  },
+  {
+    "id": 32,
+    "title": "Ký tự đặc biệt tầng 2",
+    "description": "Luyện gõ các ký tự: ^ & * ( )",
+    "level": "Trung cấp",
+    "content": "^&*() ^&*() ^&*() ^&*() ^&*() ^&*()",
+    "icon": "fa-asterisk"
+  },
+  {
+    "id": 33,
+    "title": "Địa chỉ trang web",
+    "description": "Luyện gõ các URL phổ biến.",
+    "level": "Trung cấp",
+    "content": "https://www.google.com; https://www.github.com; ftp://files.server.org",
+    "icon": "fa-globe"
+  },
+  {
+    "id": 34,
+    "title": "Gõ phím tắt thông dụng",
+    "description": "Mô phỏng các tổ hợp phím Ctrl/Alt.",
+    "level": "Trung cấp",
+    "content": "Ctrl+C, Ctrl+V, Ctrl+X, Ctrl+Z, Alt+Tab, Win+D, Ctrl+S.",
+    "icon": "fa-keyboard"
+  },
+  {
+    "id": 35,
+    "title": "Đoạn văn: Du lịch",
+    "description": "Luyện gõ về các địa điểm du lịch.",
+    "level": "Trung cấp",
+    "content": "Traveling allows you to experience different cultures and meet new people.",
+    "icon": "fa-plane"
+  },
+  {
+    "id": 36,
+    "title": "Luyện gõ số thập phân",
+    "description": "Sử dụng bàn phím số và dấu chấm.",
+    "level": "Trung cấp",
+    "content": "3.14159, 100.50, 0.001, 99.99, 1024.12, 45.6",
+    "icon": "fa-calculator"
+  },
+  {
+    "id": 37,
+    "title": "Thành ngữ Tiếng Anh 1",
+    "description": "Gõ các câu tục ngữ phổ biến.",
+    "level": "Trung cấp",
+    "content": "A picture is worth a thousand words. Better late than never.",
+    "icon": "fa-book"
+  },
+  {
+    "id": 38,
+    "title": "Thành ngữ Tiếng Anh 2",
+    "description": "Tăng cường vốn từ qua thành ngữ.",
+    "level": "Trung cấp",
+    "content": "Don't judge a book by its cover. Actions speak louder than words.",
+    "icon": "fa-book-open"
+  },
+  {
+    "id": 39,
+    "title": "Đoạn văn: Sức khỏe",
+    "description": "Chủ đề chăm sóc sức khỏe bản thân.",
+    "level": "Trung cấp",
+    "content": "Eating healthy and exercising regularly can help you live a longer life.",
+    "icon": "fa-heartbeat"
+  },
+  {
+    "id": 40,
+    "title": "Kiểm tra tốc độ 2",
+    "description": "Thử thách đoạn văn dài hơn với ký tự đặc biệt.",
+    "level": "Trung cấp",
+    "content": "Life is 10% what happens to us and 90% how we react to it. - Charles R. Swindoll",
+    "icon": "fa-stopwatch"
+  },
+  {
+    "id": 41,
+    "title": "Lập trình HTML cơ bản",
+    "description": "Gõ các thẻ HTML phổ biến.",
+    "level": "Nâng cao",
+    "content": "<html><head><title>My Web</title></head><body><h1>Hello</h1></body></html>",
+    "icon": "fa-code"
+  },
+  {
+    "id": 42,
+    "title": "Lập trình CSS cơ bản",
+    "description": "Luyện gõ cú pháp định dạng CSS.",
+    "level": "Nâng cao",
+    "content": "body { color: white; background: #000; font-size: 16px; margin: 0; }",
+    "icon": "fa-css3-alt"
+  },
+  {
+    "id": 43,
+    "title": "Lập trình JavaScript",
+    "description": "Gõ các hàm và biến trong JS.",
+    "level": "Nâng cao",
+    "content": "function greet(name) { console.log('Hello, ' + name + '!'); } greet('Admin');",
+    "icon": "fa-js-square"
+  },
+  {
+    "id": 44,
+    "title": "Lập trình Python",
+    "description": "Luyện gõ cấu trúc thụt lề của Python.",
+    "level": "Nâng cao",
+    "content": "def calculate_sum(a, b): return a + b\nresult = calculate_sum(10, 20)\nprint(result)",
+    "icon": "fa-python"
+  },
+  {
+    "id": 45,
+    "title": "Cấu trúc dữ liệu JSON",
+    "description": "Luyện gõ các cặp key-value.",
+    "level": "Nâng cao",
+    "content": "{\"id\": 1, \"status\": \"success\", \"data\": [10, 20, 30], \"active\": true}",
+    "icon": "fa-database"
+  },
+  {
+    "id": 46,
+    "title": "Văn học: Trích dẫn",
+    "description": "Đoạn văn trích dẫn từ tác phẩm kinh điển.",
+    "level": "Nâng cao",
+    "content": "To be, or not to be, that is the question: Whether 'tis nobler in the mind to suffer...",
+    "icon": "fa-pen-nib"
+  },
+  {
+    "id": 47,
+    "title": "Thử thách: Ký tự khó",
+    "description": "Sử dụng các phím hiếm gặp như ~, `, |, \\, { }.",
+    "level": "Nâng cao",
+    "content": "echo \"Hello World\" >> /dev/null; chmod 777 ~/script.sh; { [ ( ) ] }",
+    "icon": "fa-terminal"
+  },
+  {
+    "id": 48,
+    "title": "Đoạn văn: Khoa học",
+    "description": "Chủ đề về vũ trụ và thiên văn học.",
+    "level": "Nâng cao",
+    "content": "The universe is a vast expanse of space, containing billions of galaxies and stars.",
+    "icon": "fa-user-astronomer"
+  },
+  {
+    "id": 49,
+    "title": "Đoạn văn: Triết học",
+    "description": "Những câu nói triết lý sâu sắc.",
+    "level": "Nâng cao",
+    "content": "I think, therefore I am. Knowledge is power. The only thing I know is that I know nothing.",
+    "icon": "fa-brain"
+  },
+  {
+    "id": 50,
+    "title": "Bậc thầy gõ phím",
+    "description": "Thử thách cuối cùng: Kết hợp tất cả kỹ năng.",
+    "level": "Nâng cao",
+    "content": "Congratulations! You have reached the final level. Mastery of typing is a lifelong skill. 100% DONE!",
+    "icon": "fa-trophy"
+  }
+]
