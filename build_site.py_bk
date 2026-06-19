@@ -71,13 +71,12 @@ html_template = """
     </main>
 
     <script>
-        // Biến toàn cục kiểm soát trạng thái
         const exercises = {exercises_json};
         let currentExercise = null;
         let typedIndex = 0;
         let errorCount = 0;
-        let isListening = false; // Chỉ cho phép gõ khi đang ở màn hình luyện tập
 
+        // Hiển thị danh sách bài tập lên Grid
         function renderGrid() {
             const grid = document.getElementById('exercise-grid');
             grid.innerHTML = exercises.map(ex => `
@@ -105,7 +104,6 @@ html_template = """
             currentExercise = exercises.find(e => e.id === id);
             typedIndex = 0;
             errorCount = 0;
-            isListening = true; // Bật trạng thái lắng nghe bàn phím
             
             document.getElementById('home-page').classList.add('hidden');
             document.getElementById('practice-page').classList.remove('hidden');
@@ -114,17 +112,17 @@ html_template = """
             document.getElementById('practice-desc').innerText = currentExercise.description;
             document.getElementById('practice-level').innerText = currentExercise.level;
             
-            // Khôi phục lại trạng thái thông báo
-            document.getElementById('stat-status').innerText = 'Đang luyện tập';
-            document.getElementById('stat-status').className = 'text-xl font-bold text-blue-500';
-            document.getElementById('stat-progress').innerText = '0%';
-            document.getElementById('stat-errors').innerText = '0';
-
             renderTextDisplay();
+            
+            const input = document.getElementById('keyboard-input');
+            input.value = '';
+            input.focus();
+            
+            // Lắng nghe sự kiện click vào khung để focus lại input
+            document.getElementById('text-display').onclick = () => input.focus();
         }
 
         function showHomePage() {
-            isListening = false; // Tắt lắng nghe khi về trang chủ để tránh xung đột phím
             document.getElementById('home-page').classList.remove('hidden');
             document.getElementById('practice-page').classList.add('hidden');
         }
@@ -141,61 +139,41 @@ html_template = """
             }).join('');
         }
 
-        // LẮNG NGHE SỰ KIỆN GÕ PHÍM TOÀN CỤC - BỎ KHOẢNG NGỪNG
-        window.addEventListener('keydown', (e) => {
-            // Nếu không ở màn hình bài tập hoặc đã gõ xong thì bỏ qua
-            if (!isListening || !currentExercise || typedIndex >= currentExercise.content.length) return;
-
-            // Bỏ qua các phím chức năng hệ thống (F1-F12, Alt, Ctrl, Shift, CapsLock, v.v.)
-            if (e.key.length > 1 && e.key !== 'Backspace' && e.key !== 'Spacebar') {
-                return; 
-            }
-
+        // Xử lý sự kiện gõ phím
+        document.getElementById('keyboard-input').addEventListener('input', (e) => {
             const content = currentExercise.content;
-            
-            // Xử lý phím Backspace (Cho phép xóa lùi lại nếu muốn cải thiện trải nghiệm)
-            if (e.key === 'Backspace') {
-                if (typedIndex > 0) {
-                    typedIndex--;
-                    renderTextDisplay();
-                    document.getElementById('stat-progress').innerText = Math.round((typedIndex / content.length) * 100) + '%';
+            const inputVal = e.target.value;
+            const lastChar = inputVal[inputVal.length - 1];
+
+            if (typedIndex < content.length) {
+                if (lastChar === content[typedIndex]) {
+                    typedIndex++;
+                } else {
+                    errorCount++;
+                    // Hiệu ứng nhấp nháy đỏ khi gõ sai
+                    const currentSpan = document.querySelector('.current');
+                    if (currentSpan) {
+                        currentSpan.classList.add('incorrect');
+                        setTimeout(() => currentSpan.classList.remove('incorrect'), 200);
+                    }
                 }
-                return;
-            }
-
-            // Lấy ký tự thực tế vừa gõ
-            const typedChar = e.key; 
-
-            // So sánh trực tiếp với ký tự mục tiêu trong chuỗi bài tập
-            if (typedChar === content[typedIndex]) {
-                typedIndex++; // Đúng: Tiến lên ký tự tiếp theo ngay lập tức
-            } else {
-                errorCount++; // Sai: Tăng bộ đếm lỗi
                 
-                // Hiệu ứng nhấp nháy đỏ trực quan tại ký tự gõ sai
-                const currentSpan = document.querySelector('.current');
-                if (currentSpan) {
-                    currentSpan.classList.add('incorrect');
-                    setTimeout(() => currentSpan.classList.remove('incorrect'), 150);
+                // Cập nhật thông tin thống kê
+                document.getElementById('stat-progress').innerText = Math.round((typedIndex / content.length) * 100) + '%';
+                document.getElementById('stat-errors').innerText = errorCount;
+                
+                renderTextDisplay();
+                
+                if (typedIndex === content.length) {
+                    document.getElementById('stat-status').innerText = 'Hoàn thành 🎉';
+                    document.getElementById('stat-status').className = 'text-xl font-bold text-emerald-500';
                 }
-            }
-            
-            // Cập nhật nhanh các chỉ số thống kê lên màn hình
-            document.getElementById('stat-progress').innerText = Math.round((typedIndex / content.length) * 100) + '%';
-            document.getElementById('stat-errors').innerText = errorCount;
-            
-            // Render lại giao diện chữ
-            renderTextDisplay();
-            
-            // Kiểm tra hoàn thành bài tập
-            if (typedIndex === content.length) {
-                document.getElementById('stat-status').innerText = 'Hoàn thành 🎉';
-                document.getElementById('stat-status').className = 'text-xl font-bold text-emerald-500';
             }
         });
 
-        // Khởi chạy ứng dụng
+        // Khởi chạy ban đầu
         renderGrid();
+    </script>
 </body>
 </html>
 """
