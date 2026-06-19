@@ -6,11 +6,10 @@ try:
     with open('exercises.json', 'r', encoding='utf-8') as f:
         exercises = json.load(f)
 except FileNotFoundError:
-    # Dữ liệu mẫu nếu chưa có file json
+    # Dữ liệu mẫu dự phòng
     exercises = [
         {"id": 1, "title": "Hàng phím cơ sở - Cơ bản", "description": "Luyện tập các phím ASDF JKL;", "level": "Cơ bản", "content": "asdf jkl; asdf jkl; aassddff jjkkll;;", "icon": "fa-keyboard"},
-        {"id": 2, "title": "Mở rộng hàng phím trên", "description": "Luyện tập thêm các phím QWER UIOP", "level": "Cơ bản", "content": "aqsw defr jiko lupt qwer uiop", "icon": "fa-arrow-up-z-a"},
-        # ... 50 bài tập sẽ nằm ở đây
+        {"id": 2, "title": "Mở rộng hàng phím trên", "description": "Luyện tập thêm các phím QWER UIOP", "level": "Cơ bản", "content": "aqsw defr jiko lupt qwer uiop", "icon": "fa-arrow-up-z-a"}
     ]
 
 # 2. Định nghĩa cấu trúc HTML mã nguồn
@@ -24,26 +23,30 @@ html_template = """
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .correct { color: #10B981; }
-        .incorrect { color: #EF4444; background-color: #FEE2E2; }
-        .current { border-bottom: 2px solid #3B82F6; animation: blink 1s infinite; }
+        .correct { color: #10B981; font-weight: bold; }
+        .incorrect { color: #EF4444; background-color: #FEE2E2; border-radius: 2px; }
+        .current { border-bottom: 3px solid #3B82F6; animation: blink 1s infinite; }
         @keyframes blink { 50% { border-color: transparent; } }
     </style>
 </head>
 <body class="bg-gray-50 font-sans min-h-screen">
 
+    <!-- HEADER -->
     <header class="bg-blue-600 text-white shadow-md py-6 px-4 text-center">
         <h1 class="text-3xl font-bold"><i class="fa-solid fa-keyboard mr-2"></i>QWERTY Master</h1>
         <p class="text-blue-100 mt-2">Lộ trình 50 bài tập từ cơ bản đến nâng cao</p>
     </header>
 
+    <!-- TRANG CHỦ: DANH SÁCH BÀI TẬP (GRID VIEW) -->
     <main id="home-page" class="max-w-6xl mx-auto px-4 py-8">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="exercise-grid">
-            </div>
+            <!-- Data sẽ được đổ vào đây từ hàm renderGrid -->
+        </div>
     </main>
 
+    <!-- TRANG LUYỆN TẬP -->
     <main id="practice-page" class="max-w-4xl mx-auto px-4 py-8 hidden">
-        <button onclick="showHomePage()" class="mb-6 px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg transition font-medium">
+        <button onclick="showHomePage()" class="mb-6 px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg transition font-medium cursor-pointer">
             <i class="fa-solid fa-arrow-left mr-2"></i> Quay lại trang chủ
         </button>
         
@@ -54,32 +57,37 @@ html_template = """
             </div>
             <p id="practice-desc" class="text-gray-600 mb-6 italic">Mô tả bài tập</p>
 
-            <div id="text-display" class="bg-gray-100 p-6 rounded-lg text-xl tracking-wide font-mono mb-6 select-none leading-relaxed min-h-[100px]"></div>
-
-            <input type="text" id="keyboard-input" class="absolute opacity-0 w-0 h-0" autofocus>
+            <!-- Vùng hiển thị chữ để gõ -->
+            <div id="text-display" class="bg-gray-100 p-6 rounded-lg text-2xl tracking-wide font-mono mb-6 select-none leading-relaxed min-h-[100px] break-words"></div>
             
-            <div class="text-center">
-                <p class="text-sm text-gray-400 animate-pulse">Nhấp vào vùng chữ và bắt đầu gõ để luyện tập...</p>
+            <div class="text-center mb-4">
+                <p id="guide-tip" class="text-sm text-gray-400 animate-pulse">Đặt tay lên bàn phím và bắt đầu gõ để luyện tập...</p>
             </div>
 
+            <!-- Thống kê kết quả -->
             <div class="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-gray-100 text-center">
                 <div><p class="text-gray-500 text-sm">Tiến độ</p><p id="stat-progress" class="text-xl font-bold text-gray-800">0%</p></div>
                 <div><p class="text-gray-500 text-sm">Sai sót</p><p id="stat-errors" class="text-xl font-bold text-red-500">0</p></div>
-                <div><p class="text-gray-500 text-sm">Kết quả</p><p id="stat-status" class="text-xl font-bold text-gray-400">Chưa xong</p></div>
+                <div><p class="text-gray-500 text-sm">Trạng thái</p><p id="stat-status" class="text-xl font-bold text-blue-500">Sẵn sàng</p></div>
             </div>
         </div>
     </main>
 
+    <!-- JAVASCRIPT LOGIC CHUYỂN ĐỔI SỰ KIỆN KEYDOWN -->
     <script>
-        // Biến toàn cục kiểm soát trạng thái
-        const exercises = {exercises_json};
+        // Không dùng dấu ngoặc nhọn bao quanh biểu thức thay thế của Python
+        const exercises = %EXERCISES_PLACEHOLDER%;
+        
         let currentExercise = null;
         let typedIndex = 0;
         let errorCount = 0;
-        let isListening = false; // Chỉ cho phép gõ khi đang ở màn hình luyện tập
+        let isListening = false;
 
+        // Render danh sách bài tập lên màn hình chính dạng Grid
         function renderGrid() {
             const grid = document.getElementById('exercise-grid');
+            if (!grid) return;
+            
             grid.innerHTML = exercises.map(ex => `
                 <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition duration-300 p-6 border border-gray-100 flex flex-col justify-between">
                     <div>
@@ -94,7 +102,7 @@ html_template = """
                         </div>
                         <p class="text-gray-600 text-sm line-clamp-2">${ex.description}</p>
                     </div>
-                    <button onclick="startExercise(${ex.id})" class="mt-6 w-full py-2 bg-blue-50 hover:bg-blue-600 text-blue-600 hover:text-white rounded-lg transition font-medium text-sm text-center">
+                    <button onclick="startExercise(${ex.id})" class="mt-6 w-full py-2 bg-blue-50 hover:bg-blue-600 text-blue-600 hover:text-white rounded-lg transition font-medium text-sm text-center cursor-pointer">
                         Luyện tập <i class="fa-solid fa-chevron-right ml-1 text-xs"></i>
                     </button>
                 </div>
@@ -103,9 +111,11 @@ html_template = """
 
         function startExercise(id) {
             currentExercise = exercises.find(e => e.id === id);
+            if (!currentExercise) return;
+            
             typedIndex = 0;
             errorCount = 0;
-            isListening = true; // Bật trạng thái lắng nghe bàn phím
+            isListening = true; 
             
             document.getElementById('home-page').classList.add('hidden');
             document.getElementById('practice-page').classList.remove('hidden');
@@ -114,17 +124,17 @@ html_template = """
             document.getElementById('practice-desc').innerText = currentExercise.description;
             document.getElementById('practice-level').innerText = currentExercise.level;
             
-            // Khôi phục lại trạng thái thông báo
-            document.getElementById('stat-status').innerText = 'Đang luyện tập';
+            document.getElementById('stat-status').innerText = 'Đang gõ...';
             document.getElementById('stat-status').className = 'text-xl font-bold text-blue-500';
             document.getElementById('stat-progress').innerText = '0%';
             document.getElementById('stat-errors').innerText = '0';
+            document.getElementById('guide-tip').classList.remove('hidden');
 
             renderTextDisplay();
         }
 
         function showHomePage() {
-            isListening = false; // Tắt lắng nghe khi về trang chủ để tránh xung đột phím
+            isListening = false; 
             document.getElementById('home-page').classList.remove('hidden');
             document.getElementById('practice-page').classList.add('hidden');
         }
@@ -137,23 +147,28 @@ html_template = """
                 let className = '';
                 if (index < typedIndex) className = 'correct';
                 else if (index === typedIndex) className = 'current';
-                return `<span class="${className}">${char}</span>`;
+                
+                // Hiển thị trực quan khoảng trắng (Space) để người dùng dễ nhìn thấy dấu cách
+                let displayChar = char === ' ' ? '&nbsp;' : char;
+                return `<span class="${className}">${displayChar}</span>`;
             }).join('');
         }
 
-        // LẮNG NGHE SỰ KIỆN GÕ PHÍM TOÀN CỤC - BỎ KHOẢNG NGỪNG
+        // BẮT SỰ KIỆN KEYDOWN KHÔNG TRỄ TẦNG PHẦN CỨNG
         window.addEventListener('keydown', (e) => {
-            // Nếu không ở màn hình bài tập hoặc đã gõ xong thì bỏ qua
             if (!isListening || !currentExercise || typedIndex >= currentExercise.content.length) return;
 
-            // Bỏ qua các phím chức năng hệ thống (F1-F12, Alt, Ctrl, Shift, CapsLock, v.v.)
-            if (e.key.length > 1 && e.key !== 'Backspace' && e.key !== 'Spacebar') {
-                return; 
+            // Chặn phím Spacebar cuộn trang web xuống dưới khi đang làm bài tập
+            if (e.key === ' ' || e.key === 'Spacebar') {
+                e.preventDefault();
             }
 
+            // Bỏ qua các phím điều khiển hệ thống
+            if (e.key.length > 1 && e.key !== 'Backspace') return;
+
             const content = currentExercise.content;
-            
-            // Xử lý phím Backspace (Cho phép xóa lùi lại nếu muốn cải thiện trải nghiệm)
+
+            // Xử lý phím Backspace xóa lùi ký tự
             if (e.key === 'Backspace') {
                 if (typedIndex > 0) {
                     typedIndex--;
@@ -163,16 +178,13 @@ html_template = """
                 return;
             }
 
-            // Lấy ký tự thực tế vừa gõ
-            const typedChar = e.key; 
+            const typedChar = e.key;
 
-            // So sánh trực tiếp với ký tự mục tiêu trong chuỗi bài tập
+            // So khớp ký tự gõ vào với dữ liệu gốc
             if (typedChar === content[typedIndex]) {
-                typedIndex++; // Đúng: Tiến lên ký tự tiếp theo ngay lập tức
+                typedIndex++;
             } else {
-                errorCount++; // Sai: Tăng bộ đếm lỗi
-                
-                // Hiệu ứng nhấp nháy đỏ trực quan tại ký tự gõ sai
+                errorCount++;
                 const currentSpan = document.querySelector('.current');
                 if (currentSpan) {
                     currentSpan.classList.add('incorrect');
@@ -180,32 +192,33 @@ html_template = """
                 }
             }
             
-            // Cập nhật nhanh các chỉ số thống kê lên màn hình
             document.getElementById('stat-progress').innerText = Math.round((typedIndex / content.length) * 100) + '%';
             document.getElementById('stat-errors').innerText = errorCount;
             
-            // Render lại giao diện chữ
             renderTextDisplay();
             
-            // Kiểm tra hoàn thành bài tập
+            // Xử lý hoàn thành bài học
             if (typedIndex === content.length) {
+                isListening = false;
                 document.getElementById('stat-status').innerText = 'Hoàn thành 🎉';
                 document.getElementById('stat-status').className = 'text-xl font-bold text-emerald-500';
+                document.getElementById('guide-tip').classList.add('hidden');
             }
         });
 
-        // Khởi chạy ứng dụng
-        renderGrid();
+        // Khởi chạy ứng dụng khi tải trang thành công
+        window.onload = renderGrid;
+    </script>
 </body>
 </html>
 """
 
-# Chèn dữ liệu JSON vào mã nguồn HTML
-final_html = html_template.replace("{exercises_json}", json.dumps(exercises, ensure_ascii=False))
+# Chèn dữ liệu an toàn bằng cách thay chuỗi placeholder đặc biệt
+final_html = html_template.replace("%EXERCISES_PLACEHOLDER%", json.dumps(exercises, ensure_ascii=False))
 
-# Xuất ra file index.html
+# Xuất ra file index.html trong thư mục dist
 os.makedirs('dist', exist_ok=True)
 with open('dist/index.html', 'w', encoding='utf-8') as f:
     f.write(final_html)
 
-print("Đã biên dịch thành công! File web tĩnh nằm tại: dist/index.html")
+print("Đã sửa lỗi hiển thị và biên dịch thành công! File web tĩnh nằm tại: dist/index.html")
